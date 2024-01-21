@@ -1,0 +1,121 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Dead_human {
+
+
+showEyes()
+
+}
+class Dream{
+RealismLevel
+sleeper
+}
+
+abstract class Human {
+Name
+Clothes
+Place
+Trauma
+
+getName()
+getClothes()
+getPlace()
+move(Landscape)
+see()
+lookBack()
+}
+
+class Trauma{
+   Description
+   getDescription()
+}
+
+class Helper{
+possibility
+}
+
+Human <|- Alive_human
+Human <|- Dead_human
+
+
+Alive_human .. Dream
+Alive_human ..> TouchableObject
+Alive_human ..> HurtingObject
+TouchableObject <|-- HurtingObject
+TouchableObject <|-- TemperatureObject
+
+Human ..> Landscape
+
+TouchableObject <|.. Dew
+TemperatureObject <|.. Dirt
+HurtingObject <|.. Pine_needles
+HurtingObject <|.. Branch
+Landscape <|.. Garage
+Landscape <|.. Lawn
+Landscape <|.. Road
+Landscape <|.. Forest
+Landscape <|.. Hill
+Alive_human .. SleepStatus
+Alive_human .. Emotion
+Human .. Trauma
+Trauma .. HurtingObject
+
+class Alive_human {
+SleepStatus
+PainLevel
+FearLevel
+BodyTemperature
+
+changeFearlevel()
+feel(Emotion)
+think()
+touch(TouchableObject)
+sleep(Dream)
+hurt()
+wakeup()
+}
+
+class Narrator{
+storyline()
+}
+
+
+interface TouchableObject {
+beTouched()
+}
+
+interface TemperatureObject{
+getTemperatureChange()
+}
+
+interface HurtingObject {
+getPainmeter()
+getTrauma()
+getgetDangerlevel()
+}
+class Branch{
+painmeter
+getTrauma("Царапина")
+}
+
+interface Landscape {
+changeLocation()
+}
+
+enum SleepStatus {
+Sleep
+Awake
+}
+
+enum Emotion {
+Calm
+Fear
+Horror
+}
+
+class Dirt {
+Temperature
+}
+
+@enduml

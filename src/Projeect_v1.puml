@@ -1,0 +1,298 @@
+@startuml
+scale max 4000 width
+
+enum world.Locations {
+NEW_ORLEANS,
+ROAD,
+FOREST,
+VILLAGE,
+UNKNOWN_AREA,
+SWAMP,
+POLICE_STATION
+}
+
+
+class world.World {
+-final ArrayList<Human> humans = new ArrayList<>()
+-Locations location
++void addHuman(Human...h)
++void deleteHuman(Human...h)
+}
+
+
+class weapons.Choose {
++static Weapons random()
+}
+
+
+enum weapons.Weapons {
+STICK,
+KNIFE,
+REVOLVER
+}
+
+
+class war.War {
++void go()
+}
+war.War -down[#AAA]--o exception.AmountException
+
+class transport.Car extends transport.Transport {
++void go()
+}
+
+
+interface transport.Movable {
+void fillUp(Human h)
+void go()
+void arrive()
+}
+
+
+abstract class transport.Transport implements transport.Movable {
++void fillUp(Human h)
++void arrive()
+}
+
+
+class transport.Waggon extends transport.Transport {
++void go()
+}
+
+
+abstract class teams.Team<H extends humans.Human> {
+-final ArrayList<H> team = new ArrayList<>()
+static class Clones
+}
+teams.Team -down[#AAA]-o exception.EmptyException
+teams.Team --down[#AAA]-o exception.ClonesException
+
+class teams.TeamOfAborigines extends teams.Team implements interfaces.HaveFun {
++void haveFun(Island island)
+}
+teams.TeamOfAborigines -down[#AAA]--o result.GetNames
+
+class teams.TeamOfPolicemen extends teams.Team implements interfaces.Feel, interfaces.GetIntoTpansport, interfaces.GoInForest {
++void feel(Emotions e)
++void hear(Sound s)
++void getIntoTpansport(Car car, Waggon w1, Waggon w2)
++void goInForest(Roots r, Lichen l, Stones s, Wall w)
+}
+teams.TeamOfPolicemen -down[#AAA]-o result.GetNames
+teams.TeamOfPolicemen -down[#AAA]--o result.GetNames
+
+interface result.GetNames {
+default ArrayList<String> get(Team t, Status stat)
+}
+
+
+class  result.Result implements result.GetNames {
+GetNames names1 = new GetNames()
+
+DisplayNames names2 = (t, s) ->
+
+Function sum = (a,b) -> a+b
+Function diff = (a,b) -> a-b
++void show(War war)
+}
+result.Result -down[#AAA]-o result.GetNames
+
+interface result.Function {
+int count(int a, int b)
+}
+
+
+interface result.DisplayNames {
+String display(Team t, Status s)
+}
+
+
+class nature.village.Huts {
+
+}
+
+
+class nature.village.Inhabitants {
++void goOutside(Huts huts)
++void say(String s)
+}
+
+
+class nature.swamp.Bodies {
++void hangDown(Gallows g)
+}
+
+
+class nature.swamp.Bonfire {
++void burn()
+}
+
+
+class nature.swamp.Gallows {
+
++void locate()
+}
+
+
+class nature.swamp.Island {
+
+}
+
+
+class nature.swamp.Monolith {
+
++void riseUp()
+}
+
+
+class nature.forest.Lichen {
+
+}
+
+
+class nature.forest.Roots {
+
+}
+
+
+class nature.forest.Stones {
+
+}
+
+
+class nature.forest.Wall {
+
+}
+
+
+interface interfaces.Feel {
+void feel(Emotions e)
+}
+
+
+interface interfaces.GetIntoTpansport {
+void getIntoTpansport(Car car, Waggon w1, Waggon w2)
+}
+
+
+interface interfaces.GoInForest {
+void goInForest(Roots r, Lichen l, Stones s, Wall w)
+}
+
+
+interface interfaces.GoInUnknownArea {
+void goInUnknownArea(TeamOfPolicemen t)
+}
+
+
+interface interfaces.HaveFun {
+void haveFun(Island island)
+}
+
+
+interface interfaces.Hear {
+void hear(Sound s)
+}
+
+
+interface interfaces.Hit<T extends humans.Human> {
+void hit(T t)
+}
+
+
+interface interfaces.See {
+void see(Hallucinations h)
+}
+
+
+interface interfaces.Take {
+void take(Figurine f) throws D
+eadException
+}
+
+
+interface interfaces.TakeWeapon {
+void takeWeapon(Weapons weapon)
+}
+
+
+enum interactionWithHuman.Emotions {
+FEAR("fear"),
+DEPRESSION("depression"),
+STUPOR("stupor"),
+COURAGE("courage")
+-final String emotion
+Emotions(String emotion)
+}
+
+
+class interactionWithHuman.Figurine {
+
+}
+
+
+class interactionWithHuman.Hallucinations {
+
+}
+
+
+class interactionWithHuman.Sound {
+
+}
+
+
+class humans.Aborigine extends humans.Human implements interfaces.TakeWeapon, interfaces.Hit {
++void takeWeapon(Weapons weapon)
++void hit(Policeman h)
+}
+
+
+abstract class humans.Human {
+
+}
+
+
+class humans.Policeman extends humans.Human implements interfaces.TakeWeapon, interfaces.Hit, interfaces.Hear, interfaces.See, interfaces.Take, interfaces.GoInUnknownArea {
++void takeWeapon(Weapons weapon)
++void hit(Aborigine h)
++void hear(Sound s)
++void see(Hallucinations h)
++void take(Figurine f) throws DeadException
++void goInUnknownArea(TeamOfPolicemen t)
+}
+humans.Policeman --down[#AAA]-o exception.DeadException
+
+class humans.Squatter extends humans.Human implements interfaces.Feel, interfaces.GetIntoTpansport {
++void feel(Emotions e)
++void getIntoTpansport(Car car, Waggon w1, Waggon w2)
+}
+
+
+enum humans.Status {
+ALIVE,
+DEAD,
+IN_CAPTIVITY
+}
+
+
+class exception.AmountException extends RuntimeException {
++AmountException(String message)
+}
+
+
+class exception.ClonesException extends RuntimeException {
++ClonesException(String message)
+}
+
+
+class exception.DeadException extends Exception {
++DeadException(String message)
+}
+
+
+class exception.EmptyException extends RuntimeException {
++EmptyException(String message)
+}
+
+
+@enduml
