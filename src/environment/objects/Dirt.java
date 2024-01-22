@@ -1,3 +1,5 @@
+package environment;
+
 public class Dirt implements TemperatureObject {
     final  int temperatureChange = -2;
     public void beTouched() {

@@ -1,3 +1,5 @@
+package environment;
+
 public class Branch implements HurtingObject {
     final int painmeter = 10;
     final int dangerlevel = 30;

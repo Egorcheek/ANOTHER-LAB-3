@@ -1,3 +1,5 @@
+import human.Alive_human;
+
 public class Dream {
 //set characters
     private int realismLevel;
