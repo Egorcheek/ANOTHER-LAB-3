@@ -1,4 +1,11 @@
+package human;
+
 import java.util.ArrayList;
+import environment.*;
+import environment.objects.*;
+import exeptions.*;
+import enums.*;
+import storyline.*;
 
 public class Alive_human extends Human {
     private int painLevel = 0;
@@ -124,7 +131,7 @@ public class Alive_human extends Human {
             }
         }
     }
-    public void sleep(Dream dream) throws SleepException{
+    public void sleep(Dream dream) throws SleepException {
 
         if (this.sleepStatus == SleepStatus.SLEEP){
             throw new SleepException("Невозможно уснуть: человек уже спит!");

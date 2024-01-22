@@ -1,4 +1,7 @@
-public class Pine_needles implements HurtingObject{
+package environment.objects;
+import human.Trauma;
+
+public class PineNeedles implements HurtingObject {
     final int dangerLevel = 80;
     final int painmeter = 1;
     public void beTouched() {

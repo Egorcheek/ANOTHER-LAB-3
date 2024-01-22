@@ -1,3 +1,7 @@
+package human;
+
+import human.Alive_human;
+
 public class Dead_human extends Human {
     private String Trauma;
 

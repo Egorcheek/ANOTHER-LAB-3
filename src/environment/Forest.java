@@ -1,4 +1,6 @@
-public class Forest implements Landscape{
+package environment;
+
+public class Forest implements Landscape {
     public void changeLocation() {
         System.out.print("в лес");
     }

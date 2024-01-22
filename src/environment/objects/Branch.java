@@ -1,5 +1,5 @@
-package environment;
-
+package environment.objects;
+import human.Trauma;
 public class Branch implements HurtingObject {
     final int painmeter = 10;
     final int dangerlevel = 30;

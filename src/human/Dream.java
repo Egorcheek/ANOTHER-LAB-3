@@ -1,3 +1,5 @@
+package human;
+
 import human.Alive_human;
 
 public class Dream {

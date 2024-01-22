@@ -1,3 +1,12 @@
+import environment.*;
+import environment.objects.*;
+import exeptions.SleepException;
+import human.Alive_human;
+import human.Dead_human;
+import human.Dream;
+import storyline.Helper;
+import storyline.Narrator;
+
 public class Main {
 
 
@@ -17,12 +26,12 @@ public class Main {
         pascow.setTrauma("cломанная ключица, полосы засохшей крови");
         Hill hill = new Hill();
         Road road = new Road();
-       // Dew dew = new Dew();
+       // environment.objects.Dew dew = new environment.objects.Dew();
         Carpet carpet = new Carpet();
         Branch branch = new Branch();
         Lawn lawn = new Lawn();
         Dirt dirt = new Dirt();
-        Pine_needles pineNeedles = new Pine_needles();
+        PineNeedles pineNeedles = new PineNeedles();
         Alive_human louise = new Alive_human("Луис", "неизвестно", "Гараж");
         Dream louisesdream = new Dream(louise);
 

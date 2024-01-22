@@ -1,5 +1,8 @@
+package human;
+
 import java.util.ArrayList;
 import java.util.Objects;
+import environment.*;
 
 public abstract class Human {
     protected String name;

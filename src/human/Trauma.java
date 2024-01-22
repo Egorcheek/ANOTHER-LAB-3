@@ -1,3 +1,5 @@
+package human;
+
 public class Trauma {
     private String description;
     public Trauma(String description){

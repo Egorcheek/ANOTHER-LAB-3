@@ -1,4 +1,4 @@
-package environment;
+package environment.objects;
 
 public class Dirt implements TemperatureObject {
     final  int temperatureChange = -2;
