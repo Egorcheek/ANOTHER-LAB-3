@@ -4,12 +4,11 @@ import java.util.Objects;
 
 public class Helper {
 private int possibility;
-
     public int getPossibility() {
         return possibility;
     }
-    public void setPossibility(int possibility) {
-        this.possibility = possibility;
+    public Helper (int possibilityLevel){
+        possibility = possibilityLevel;
     }
     @Override
     public boolean equals(Object o){

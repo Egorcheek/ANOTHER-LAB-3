@@ -13,38 +13,26 @@ public class Alive_human extends Human {
     private int wakeupchance = 30;
     private Dream dream;
     private SleepStatus sleepStatus = SleepStatus.AWAKE;
-    public int getPainLevel() {
-        return painLevel;
-    }
     private int bodyTemperature = 36;
-
+    private int heartRate = 70;
+    public int getHeartRate() {
+        return heartRate;
+    }
     public int getBodyTemperature() {
         return bodyTemperature;
     }
-
-    public void setBodyTemperature(int bodyTemperature) {
-        this.bodyTemperature = bodyTemperature;
-    }
-
     public int getFearlevel() {
         return fearlevel;
     }
-
-    private void setFearlevel(int fearlevel) {
-        this.fearlevel = fearlevel;
+    public int getPainLevel() {
+        return painLevel;
     }
-
-    private void setPainLevel(int ppainLevel) {
-        painLevel = ppainLevel;
-    }
-
     public Alive_human(String name, String clothes, String place) {
         this.clothes = clothes;
         this.name = name;
         this.place = place;
         this.trauma = new ArrayList<>();
     }
-
     public void touch (TouchableObject touchableObject){
         touchableObject.beTouched();
         if (sleepStatus == SleepStatus.SLEEP){
@@ -67,36 +55,13 @@ public class Alive_human extends Human {
             hurt(hurtingObject);
         }
     }
-
     public void think (String thought){
-        System.out.println(" ");
-        System.out.print(name);
-        System.out.print(" подумал: '");
-        System.out.print(thought);
-        System.out.print("'");
+        System.out.println(name + " подумал: '" + thought + "'");
     }
     public void hurt (HurtingObject hurtingObject){
         painLevel = painLevel + hurtingObject.getPainmeter();
         this.addTrauma(hurtingObject.getTrauma());
-       // this.checkPainLevel();
     }
-    /*private void checkPainLevel(){
-        if (painLevel >= 10 && painLevel < 20){
-            System.out.println(" ");
-            System.out.print(name);
-            System.out.print(" вздрогнул от боли! ");
-        }
-        if (painLevel >= 20 && painLevel < 40){
-            System.out.println(" ");
-            System.out.print(name);
-            System.out.print(" вскрикнул от боли! ");
-        }
-        if (painLevel >= 40 && painLevel < 60){
-            System.out.println(" ");
-            System.out.print(name);
-            System.out.print(" ОРЕТ ОТ БОЛИ! ");
-        }
-    }*/
     private void checkFearLevel(){
         if (fearlevel >= 10 && fearlevel < 20){
             this.feel(Emotion.FEAR);
@@ -110,13 +75,15 @@ public class Alive_human extends Human {
     }
     public void feel (Emotion emotion){
         if(emotion == Emotion.FEAR){
+            heartRate = 100;
         }
         if(emotion == Emotion.HORROR){
+            heartRate = 150;
         }
         if(emotion == Emotion.CALM){
+            heartRate = 75;
         }
     }
-
     public void see(Dead_human deadHuman) {
         fearlevel = fearlevel + 10;
         this.checkFearLevel();

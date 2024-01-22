@@ -5,7 +5,6 @@ import human.Alive_human;
 import human.Dead_human;
 import human.Dream;
 import storyline.Helper;
-import storyline.Narrator;
 
 public class Main {
 
@@ -20,13 +19,11 @@ public class Main {
             @Override
             public void beTouched() {}
         };
-
-        Narrator narrator = new Narrator();
+        
         Dead_human pascow = new Dead_human("Паскоу", "Шорты", "Лужайка");
         pascow.setTrauma("cломанная ключица, полосы засохшей крови");
         Hill hill = new Hill();
         Road road = new Road();
-       // environment.objects.Dew dew = new environment.objects.Dew();
         Carpet carpet = new Carpet();
         Branch branch = new Branch();
         Lawn lawn = new Lawn();
@@ -35,10 +32,8 @@ public class Main {
         Alive_human louise = new Alive_human("Луис", "неизвестно", "Гараж");
         Dream louisesdream = new Dream(louise);
 
-        Helper plumber = new Helper();
-        Helper rain_summoner = new Helper();
-        plumber.setPossibility(19);
-        rain_summoner.setPossibility(19);
+        Helper plumber = new Helper(19);
+        Helper rain_summoner = new Helper(19);
         try {
             louise.sleep(louisesdream);
         } catch (SleepException e){
@@ -59,7 +54,6 @@ public class Main {
         louise.touch(pineNeedles);
         louise.think("Не думай об этом. Ты дома, в своей постели. Это всего лишь сон, не важно, насколько он правдоподобен. Как все другие сны, утром он покажется тебе смешным");
         louise.touch(branch);
-        louise.changefearlevel(100);
         louise.think("Я иду по лесу вслед за мертвецом. Я иду за мертвецом на Кладбище домашних животных, и это не сон. Господи, спаси, это не сон. Это наяву");
         louise.move(hill);
         louise.touch(dirt);

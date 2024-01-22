@@ -9,6 +9,7 @@ public abstract class Human {
     protected String clothes;
     protected String place;
     protected ArrayList<Trauma> trauma;
+    ArrayList<Trauma> traumas = new ArrayList<Trauma>();
     public String getName(){
         return  name;
     }
