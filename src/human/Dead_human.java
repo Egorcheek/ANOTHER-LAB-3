@@ -1,22 +1,15 @@
 package human;
 
-import human.Alive_human;
+import environment.Landscape;
+import java.util.ArrayList;
 
 public class Dead_human extends Human {
-    private String Trauma;
 
-    public String getTrauma() {
-        return Trauma;
-    }
-
-    public void setTrauma(String trauma) {
-        Trauma = trauma;
-    }
-
-    public Dead_human(String name, String clothes, String place){
+    public Dead_human(String name, String clothes, Landscape landscape){
         this.clothes = clothes;
         this.name = name;
-        this.place = place;
+        setPlace(landscape.Location());
+        this.trauma = new ArrayList<>();
     }
     public void showEyes(Alive_human aliveHuman){
         aliveHuman.changefearlevel(15);

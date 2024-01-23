@@ -5,12 +5,11 @@ import environment.*;
 import environment.objects.*;
 import exeptions.*;
 import enums.*;
-import storyline.*;
 
 public class Alive_human extends Human {
     private int painLevel = 0;
     private int fearlevel = 0;
-    private int wakeupchance = 30;
+    final int wakeupchance = 30;
     private Dream dream;
     private SleepStatus sleepStatus = SleepStatus.AWAKE;
     private int bodyTemperature = 36;
@@ -27,10 +26,10 @@ public class Alive_human extends Human {
     public int getPainLevel() {
         return painLevel;
     }
-    public Alive_human(String name, String clothes, String place) {
+    public Alive_human(String name, String clothes, Landscape landscape) {
         this.clothes = clothes;
         this.name = name;
-        this.place = place;
+        setPlace(landscape.Location());
         this.trauma = new ArrayList<>();
     }
     public void touch (TouchableObject touchableObject){
@@ -123,7 +122,7 @@ public class Alive_human extends Human {
     @Override
     public void move(Landscape landscape){
         if (Math.random()*50 > fearlevel){
-            landscape.changeLocation();
+            setPlace(landscape.Location());
         }
     }
 }

@@ -1,5 +1,5 @@
 package environment;
 
 public interface Landscape {
-    public void changeLocation();
+    public String Location();
 }

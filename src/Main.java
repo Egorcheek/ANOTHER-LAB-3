@@ -9,19 +9,13 @@ import storyline.Helper;
 public class Main {
 
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
 
         TouchableObject dew = new TouchableObject() {
             @Override
             public void beTouched() {}
         };
-        TouchableObject pine = new TouchableObject() {
-            @Override
-            public void beTouched() {}
-        };
-        
-        Dead_human pascow = new Dead_human("Паскоу", "Шорты", "Лужайка");
-        pascow.setTrauma("cломанная ключица, полосы засохшей крови");
+
         Hill hill = new Hill();
         Road road = new Road();
         Carpet carpet = new Carpet();
@@ -29,7 +23,10 @@ public class Main {
         Lawn lawn = new Lawn();
         Dirt dirt = new Dirt();
         PineNeedles pineNeedles = new PineNeedles();
-        Alive_human louise = new Alive_human("Луис", "неизвестно", "Гараж");
+        Garage garage = new Garage();
+        Alive_human louise = new Alive_human("Луис", "неизвестно", garage);
+        Dead_human pascow = new Dead_human("Паскоу", "Шорты", lawn);
+        pascow.setTrauma("cломанная ключица, полосы засохшей крови");
         Dream louisesdream = new Dream(louise);
 
         Helper plumber = new Helper(19);
