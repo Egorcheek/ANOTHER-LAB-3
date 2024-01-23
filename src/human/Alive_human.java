@@ -8,24 +8,12 @@ import enums.*;
 
 public class Alive_human extends Human {
     private int painLevel = 0;
+    private int heartRate = 75;
     private int fearlevel = 0;
     final int wakeupchance = 30;
     private Dream dream;
     private SleepStatus sleepStatus = SleepStatus.AWAKE;
     private int bodyTemperature = 36;
-    private int heartRate = 70;
-    public int getHeartRate() {
-        return heartRate;
-    }
-    public int getBodyTemperature() {
-        return bodyTemperature;
-    }
-    public int getFearlevel() {
-        return fearlevel;
-    }
-    public int getPainLevel() {
-        return painLevel;
-    }
     public Alive_human(String name, String clothes, Landscape landscape) {
         this.clothes = clothes;
         this.name = name;
@@ -33,25 +21,26 @@ public class Alive_human extends Human {
         this.trauma = new ArrayList<>();
     }
     public void touch (TouchableObject touchableObject){
-        touchableObject.beTouched();
-        if (sleepStatus == SleepStatus.SLEEP){
-            dream.setRealismLevel(dream.getRealismLevel() +  20);
-        }
-    }
-    public void touch (TemperatureObject temperatureObject){
-        temperatureObject.beTouched();
-        if (sleepStatus == SleepStatus.SLEEP){
-            dream.setRealismLevel(dream.getRealismLevel() +  30);
-        }
-        bodyTemperature = bodyTemperature + temperatureObject.getTemperaturechange();
-    }
-    public void touch (HurtingObject hurtingObject){
-        hurtingObject.beTouched();
-        if (sleepStatus == SleepStatus.SLEEP){
-            dream.setRealismLevel(dream.getRealismLevel() +  40);
-        }
-        if (Math.random()*100 < hurtingObject.getDangerlevel()){
-            hurt(hurtingObject);
+        if (touchableObject instanceof TemperatureObject touchableObject1){
+            if (sleepStatus == SleepStatus.SLEEP){
+                dream.setRealismLevel(dream.getRealismLevel() +  30);
+            }
+            bodyTemperature = bodyTemperature + touchableObject1.getTemperaturechange();
+        } else {
+            if(touchableObject instanceof HurtingObject touchableObject2){
+                touchableObject2.beTouched();
+                if (sleepStatus == SleepStatus.SLEEP){
+                    dream.setRealismLevel(dream.getRealismLevel() +  40);
+                }
+                if (Math.random()*100 < touchableObject2.getDangerlevel()){
+                    hurt(touchableObject2);
+                }
+            } else {
+                touchableObject.beTouched();
+                if (sleepStatus == SleepStatus.SLEEP){
+                    dream.setRealismLevel(dream.getRealismLevel() +  20);
+                }
+            }
         }
     }
     public void think (String thought){
@@ -73,6 +62,7 @@ public class Alive_human extends Human {
         }
     }
     public void feel (Emotion emotion){
+
         if(emotion == Emotion.FEAR){
             heartRate = 100;
         }
@@ -84,18 +74,11 @@ public class Alive_human extends Human {
         }
     }
     public void see(Dead_human deadHuman) {
+        if (this.place == deadHuman.getPlace()){
+            throw new LocationException("Невозможно увидеть: люди в разных локациях");
+        }
         fearlevel = fearlevel + 10;
         this.checkFearLevel();
-    }
-    public void checkTrauma() {
-        if (trauma.isEmpty()) {
-            System.out.println(name + " не имеет травм.");
-        } else {
-            System.out.println(name + " имеет следующие травмы:");
-            for (Trauma ttrauma : trauma) {
-                System.out.println("- " + ttrauma.getDescription());
-            }
-        }
     }
     public void sleep(Dream dream) throws SleepException {
 
@@ -110,7 +93,7 @@ public class Alive_human extends Human {
         if (this.sleepStatus == SleepStatus.AWAKE){
             throw new Error("Невозможно проснуться, персонаж не спит!");
         } else{
-            if(Math.random()*100 < wakeupchance - dream.getRealismLevel()){
+            if(Math.random()*100 < wakeupchance - dream.getRealismLevel() + heartRate/15){
                 this.sleepStatus = SleepStatus.AWAKE;
             }
         }

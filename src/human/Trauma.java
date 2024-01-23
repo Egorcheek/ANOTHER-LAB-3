@@ -1,7 +1,7 @@
 package human;
 
 public class Trauma {
-    private String description;
+    private final String description;
     public Trauma(String description){
         this.description = description;
     }

@@ -4,6 +4,7 @@ import exeptions.SleepException;
 import human.Alive_human;
 import human.Dead_human;
 import human.Dream;
+import human.Trauma;
 import storyline.Helper;
 
 public class Main {
@@ -21,12 +22,16 @@ public class Main {
         Carpet carpet = new Carpet();
         Branch branch = new Branch();
         Lawn lawn = new Lawn();
+        Forest forest = new Forest();
         Dirt dirt = new Dirt();
         PineNeedles pineNeedles = new PineNeedles();
         Garage garage = new Garage();
+        Trauma brokenCollarbone = new Trauma("cломанная ключица");
+        Trauma dryBlood = new Trauma("полосы засохшей крови");
         Alive_human louise = new Alive_human("Луис", "неизвестно", garage);
         Dead_human pascow = new Dead_human("Паскоу", "Шорты", lawn);
-        pascow.setTrauma("cломанная ключица, полосы засохшей крови");
+        pascow.addTrauma(brokenCollarbone);
+        pascow.addTrauma(dryBlood);
         Dream louisesdream = new Dream(louise);
 
         Helper plumber = new Helper(19);
@@ -40,8 +45,8 @@ public class Main {
         louise.move(lawn);
         pascow.lookBack();
         pascow.showEyes(louise);
-        louise.see(pascow.getTrauma());
-        if(plumber == rain_summoner){
+        louise.see(pascow.checkTrauma());
+        if(plumber.equals(rain_summoner)){
             boolean help = false;
         }
         pascow.move(road);
@@ -51,6 +56,8 @@ public class Main {
         louise.touch(pineNeedles);
         louise.think("Не думай об этом. Ты дома, в своей постели. Это всего лишь сон, не важно, насколько он правдоподобен. Как все другие сны, утром он покажется тебе смешным");
         louise.touch(branch);
+        pascow.move(forest);
+        louise.move(forest);
         louise.think("Я иду по лесу вслед за мертвецом. Я иду за мертвецом на Кладбище домашних животных, и это не сон. Господи, спаси, это не сон. Это наяву");
         louise.move(hill);
         louise.touch(dirt);

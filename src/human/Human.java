@@ -10,9 +10,6 @@ public abstract class Human {
     protected String place;
     protected ArrayList<Trauma> trauma;
     ArrayList<Trauma> traumas = new ArrayList<>();
-    public String getName(){
-        return  name;
-    }
     //public String getClothes() {
     //    return clothes;
    // } сделать аррау лист как травмы
@@ -25,7 +22,7 @@ public abstract class Human {
     public void see(String obj){
 
     }
-    public void see(Human human, String land) throws LocationException {
+    public void see(Human human) throws LocationException {
         if (this.place == human.getPlace()){
             throw new LocationException("Невозможно увидеть: люди в разных локациях");
         }
@@ -39,7 +36,16 @@ public abstract class Human {
     public void addTrauma(Trauma trauma){
         this.trauma.add(trauma);
     }
-
+    public String checkTrauma() {
+        StringBuilder result = new StringBuilder();
+        for (Trauma ttrauma : trauma) {
+            result.append(ttrauma.getDescription()).append(", ");
+        }
+        if (!result.isEmpty()){
+            result.delete(result.length() - 2, result.length());
+        }
+        return (result.toString());
+    }
 }
 
 

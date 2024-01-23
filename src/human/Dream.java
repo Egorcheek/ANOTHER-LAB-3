@@ -5,7 +5,7 @@ import human.Alive_human;
 public class Dream {
 //set characters
     private int realismLevel;
-    private Alive_human sleeper;
+    private final Alive_human sleeper;
     public int getRealismLevel() {
         return realismLevel;
     }
