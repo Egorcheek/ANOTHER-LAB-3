@@ -14,7 +14,8 @@ public class Main {
 
         TouchableObject dew = new TouchableObject() {
             @Override
-            public void beTouched() {}
+            public int beTouched() {
+                return 3;}
         };
 
         Hill hill = new Hill();

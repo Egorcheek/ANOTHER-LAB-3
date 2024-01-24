@@ -23,22 +23,20 @@ public class Alive_human extends Human {
     public void touch (TouchableObject touchableObject){
         if (touchableObject instanceof TemperatureObject touchableObject1){
             if (sleepStatus == SleepStatus.SLEEP){
-                dream.setRealismLevel(dream.getRealismLevel() +  30);
+                dream.setRealismLevel(dream.getRealismLevel() +  30 + touchableObject1.beTouched());
             }
             bodyTemperature = bodyTemperature + touchableObject1.getTemperaturechange();
         } else {
             if(touchableObject instanceof HurtingObject touchableObject2){
-                touchableObject2.beTouched();
                 if (sleepStatus == SleepStatus.SLEEP){
-                    dream.setRealismLevel(dream.getRealismLevel() +  40);
+                    dream.setRealismLevel(dream.getRealismLevel() +  40 + touchableObject2.beTouched());
                 }
                 if (Math.random()*100 < touchableObject2.getDangerlevel()){
                     hurt(touchableObject2);
                 }
             } else {
-                touchableObject.beTouched();
                 if (sleepStatus == SleepStatus.SLEEP){
-                    dream.setRealismLevel(dream.getRealismLevel() +  20);
+                    dream.setRealismLevel(dream.getRealismLevel() +  20 + touchableObject.beTouched());
                 }
             }
         }

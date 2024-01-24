@@ -1,6 +1,8 @@
 package environment.objects;
 
 public class Carpet implements TouchableObject {
-    public void beTouched() {
+    final int textureLevel = 2;
+    public int beTouched() {
+        return textureLevel;
     }
 }

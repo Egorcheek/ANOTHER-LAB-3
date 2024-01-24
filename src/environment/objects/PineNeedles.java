@@ -4,7 +4,9 @@ import human.Trauma;
 public class PineNeedles implements HurtingObject {
     final int dangerLevel = 80;
     final int painmeter = 1;
-    public void beTouched() {
+    final int textureLevel = 4;
+    public int beTouched() {
+        return textureLevel;
     }
     public int getDangerlevel() {
         return dangerLevel;
