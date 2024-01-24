@@ -29,8 +29,8 @@ public class Main {
         Garage garage = new Garage();
         Trauma brokenCollarbone = new Trauma("cломанная ключица");
         Trauma dryBlood = new Trauma("полосы засохшей крови");
-        Alive_human louise = new Alive_human("Луис", "неизвестно", garage);
-        Dead_human pascow = new Dead_human("Паскоу", "Шорты", lawn);
+        Alive_human louise = new Alive_human("Луис", garage);
+        Dead_human pascow = new Dead_human("Паскоу", lawn);
         pascow.addTrauma(brokenCollarbone);
         pascow.addTrauma(dryBlood);
         Dream louisesdream = new Dream(louise);

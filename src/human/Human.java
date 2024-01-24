@@ -6,13 +6,9 @@ import exeptions.LocationException;
 
 public abstract class Human {
     protected String name;
-    protected String clothes;
     protected String place;
     protected ArrayList<Trauma> trauma;
     ArrayList<Trauma> traumas = new ArrayList<>();
-    //public String getClothes() {
-    //    return clothes;
-   // } сделать аррау лист как травмы
     public String getPlace() {
         return place;
     }

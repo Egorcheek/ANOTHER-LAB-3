@@ -7,15 +7,18 @@ import exeptions.*;
 import enums.*;
 
 public class Alive_human extends Human {
-    private int painLevel = 0;
+    private class Feelings {
+        private int fearlevel = 0;
+        private int painLevel = 0;
+    }
+    Feelings feelings = new Feelings();
     private int heartRate = 75;
-    private int fearlevel = 0;
+
     final int wakeupchance = 30;
     private Dream dream;
     private SleepStatus sleepStatus = SleepStatus.AWAKE;
     private int bodyTemperature = 36;
-    public Alive_human(String name, String clothes, Landscape landscape) {
-        this.clothes = clothes;
+    public Alive_human(String name, Landscape landscape) {
         this.name = name;
         setPlace(landscape.Location());
         this.trauma = new ArrayList<>();
@@ -45,17 +48,17 @@ public class Alive_human extends Human {
         System.out.println(name + " подумал: '" + thought + "'");
     }
     public void hurt (HurtingObject hurtingObject){
-        painLevel = painLevel + hurtingObject.getPainmeter();
+        feelings.painLevel = feelings.painLevel + hurtingObject.getPainmeter();
         this.addTrauma(hurtingObject.getTrauma());
     }
     private void checkFearLevel(){
-        if (fearlevel >= 10 && fearlevel < 20){
+        if (feelings.fearlevel >= 10 && feelings.fearlevel < 20){
             this.feel(Emotion.FEAR);
         }
-        if (painLevel >= 20 && painLevel < 40){
+        if (feelings.fearlevel >= 20 && feelings.fearlevel < 40){
             this.feel(Emotion.HORROR);
         }
-        if (painLevel < 10){
+        if (feelings.fearlevel < 10){
             this.feel(Emotion.CALM);
         }
     }
@@ -75,7 +78,7 @@ public class Alive_human extends Human {
         if (this.place == deadHuman.getPlace()){
             throw new LocationException("Невозможно увидеть: люди в разных локациях");
         }
-        fearlevel = fearlevel + 10;
+        feelings.fearlevel = feelings.fearlevel + 10;
         this.checkFearLevel();
     }
     public void sleep(Dream dream) throws SleepException {
@@ -98,11 +101,11 @@ public class Alive_human extends Human {
     }
 
     public void changefearlevel(int a){
-        fearlevel = fearlevel + a;
+        feelings.fearlevel = feelings.fearlevel + a;
     }
     @Override
     public void move(Landscape landscape){
-        if (Math.random()*50 > fearlevel){
+        if (Math.random()*50 > feelings.fearlevel){
             setPlace(landscape.Location());
         }
     }
