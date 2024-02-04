@@ -1,6 +1,8 @@
 package human;
 
 import java.util.ArrayList;
+import java.util.Objects;
+
 import environment.*;
 import environment.objects.*;
 import exeptions.*;
@@ -20,7 +22,7 @@ public class Alive_human extends Human {
     private int bodyTemperature = 36;
     public Alive_human(String name, Landscape landscape) {
         this.name = name;
-        setPlace(landscape.Location());
+        setPlace(landscape);
         this.trauma = new ArrayList<>();
     }
     public void touch (TouchableObject touchableObject){
@@ -75,8 +77,10 @@ public class Alive_human extends Human {
         }
     }
     public void see(Dead_human deadHuman) {
-        if (this.place == deadHuman.getPlace()){
-            throw new LocationException("Невозможно увидеть: люди в разных локациях");
+        if (Objects.equals(this.place, deadHuman.getPlace())){
+
+            System.out.println("ОШИБКА");
+        new LocationException("Невозможно увидеть: люди в разных локациях");
         }
         feelings.fearlevel = feelings.fearlevel + 10;
         this.checkFearLevel();
@@ -102,11 +106,5 @@ public class Alive_human extends Human {
 
     public void changefearlevel(int a){
         feelings.fearlevel = feelings.fearlevel + a;
-    }
-    @Override
-    public void move(Landscape landscape){
-        if (Math.random()*50 > feelings.fearlevel){
-            setPlace(landscape.Location());
-        }
     }
 }

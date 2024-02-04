@@ -1,5 +1,5 @@
 package environment;
-
+import java.util.List;
 public interface Landscape {
-    String Location();
+    List <Landscape> checkAvailablePath();
 }

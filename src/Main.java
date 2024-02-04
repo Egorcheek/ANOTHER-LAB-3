@@ -6,6 +6,7 @@ import human.Dead_human;
 import human.Dream;
 import human.Trauma;
 import storyline.Helper;
+import java.util.List;
 
 public class Main {
 
@@ -34,6 +35,11 @@ public class Main {
         pascow.addTrauma(brokenCollarbone);
         pascow.addTrauma(dryBlood);
         Dream louisesdream = new Dream(louise);
+        lawn.setNeighbors(List.of(road, garage));
+        garage.setNeighbors(List.of(road));
+        road.setNeighbors(List.of(lawn, garage, forest));
+        forest.setNeighbors(List.of(road, hill));
+        hill.setNeighbors(List.of(forest));
 
         Helper plumber = new Helper(19);
         Helper rain_summoner = new Helper(19);
@@ -43,7 +49,6 @@ public class Main {
             System.out.println(e.getMessage());
         }
         louise.see(pascow);
-        louise.move(lawn);
         pascow.lookBack();
         pascow.showEyes(louise);
         louise.see(pascow.checkTrauma());

@@ -7,7 +7,7 @@ public class Dead_human extends Human {
 
     public Dead_human(String name, Landscape landscape){
         this.name = name;
-        setPlace(landscape.Location());
+        setPlace(landscape);
         this.trauma = new ArrayList<>();
     }
     public void showEyes(Alive_human aliveHuman){

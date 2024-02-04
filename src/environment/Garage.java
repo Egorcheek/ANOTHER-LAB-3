@@ -1,6 +1,12 @@
 package environment;
+import java.util.List;
 
 public class Garage implements Landscape {
-    public String Location() {
-        return "Гараж";}
+    private List<Landscape> neighbors;
+    public List<Landscape> checkAvailablePath() {
+        return neighbors;
+    }
+    public void setNeighbors(List<Landscape> neighbors) {
+        this.neighbors = neighbors;
+    }
 }

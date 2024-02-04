@@ -1,7 +1,13 @@
 package environment;
 import environment.*;
+import java.util.List;
 
 public class Lawn implements Landscape {
-    public String Location() {
-        return "Лужайка";}
+    private List<Landscape> neighbors;
+    public List<Landscape> checkAvailablePath() {
+        return neighbors;
+    }
+    public void setNeighbors(List<Landscape> neighbors) {
+        this.neighbors = neighbors;
+    }
 }
