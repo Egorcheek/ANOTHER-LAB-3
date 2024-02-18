@@ -13,12 +13,12 @@ public class Main {
 
     public static void main(String[] args){
 
-        TouchableObject dew = new TouchableObject() {
+        /*TouchableObject dew = new TouchableObject() {
             @Override
             public int beTouched() {
                 return 3;}
         };
-
+        */
         Hill hill = new Hill();
         Road road = new Road();
         Carpet carpet = new Carpet();
@@ -26,6 +26,7 @@ public class Main {
         Lawn lawn = new Lawn();
         Forest forest = new Forest();
         Dirt dirt = new Dirt();
+        Dew dew = new Dew();
         PineNeedles pineNeedles = new PineNeedles();
         Garage garage = new Garage();
         Trauma brokenCollarbone = new Trauma("cломанная ключица");
@@ -61,9 +62,9 @@ public class Main {
         louise.touch(dew);
         louise.touch(pineNeedles);
         louise.think("Не думай об этом. Ты дома, в своей постели. Это всего лишь сон, не важно, насколько он правдоподобен. Как все другие сны, утром он покажется тебе смешным");
-        louise.touch(branch);
         pascow.move(forest);
         louise.move(forest);
+        louise.touch(branch);
         louise.think("Я иду по лесу вслед за мертвецом. Я иду за мертвецом на Кладбище домашних животных, и это не сон. Господи, спаси, это не сон. Это наяву");
         louise.move(hill);
         louise.touch(dirt);

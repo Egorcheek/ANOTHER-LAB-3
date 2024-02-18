@@ -119,5 +119,26 @@ class Dirt {
 Temperature
 }
 
+class Garage {
+checkAvailablePath()
+setNeighbors(List<Landscape>)
+}
+class Lawn {
+checkAvailablePath()
+setNeighbors(List<Landscape>)
+}
+class Road {
+checkAvailablePath()
+setNeighbors(List<Landscape>)
+}
+class Forest {
+checkAvailablePath()
+setNeighbors(List<Landscape>)
+}
+class Hill {
+checkAvailablePath()
+setNeighbors(List<Landscape>)
+}
+
 
 @enduml

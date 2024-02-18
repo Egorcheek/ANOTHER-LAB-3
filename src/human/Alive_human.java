@@ -1,6 +1,7 @@
 package human;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import environment.*;
@@ -25,25 +26,40 @@ public class Alive_human extends Human {
         setPlace(landscape);
         this.trauma = new ArrayList<>();
     }
+    protected boolean isValidTouch(TouchableObject touchableObject) {
+        List<Landscape> availableLocations = touchableObject.checkAvailability();
+        return availableLocations.contains(place);
+    }
     public void touch (TouchableObject touchableObject){
-        if (touchableObject instanceof TemperatureObject touchableObject1){
-            if (sleepStatus == SleepStatus.SLEEP){
-                dream.setRealismLevel(dream.getRealismLevel() +  30 + touchableObject1.beTouched());
-            }
-            bodyTemperature = bodyTemperature + touchableObject1.getTemperaturechange();
-        } else {
-            if(touchableObject instanceof HurtingObject touchableObject2){
+        if (isValidTouch(touchableObject)) {
+            if (touchableObject instanceof TemperatureObject touchableObject1){
                 if (sleepStatus == SleepStatus.SLEEP){
-                    dream.setRealismLevel(dream.getRealismLevel() +  40 + touchableObject2.beTouched());
+                    dream.setRealismLevel(dream.getRealismLevel() +  30 + touchableObject1.beTouched());
                 }
-                if (Math.random()*100 < touchableObject2.getDangerlevel()){
-                    hurt(touchableObject2);
-                }
+                bodyTemperature = bodyTemperature + touchableObject1.getTemperaturechange();
             } else {
-                if (sleepStatus == SleepStatus.SLEEP){
-                    dream.setRealismLevel(dream.getRealismLevel() +  20 + touchableObject.beTouched());
+                if(touchableObject instanceof HurtingObject touchableObject2){
+                    if (sleepStatus == SleepStatus.SLEEP){
+                        dream.setRealismLevel(dream.getRealismLevel() +  40 + touchableObject2.beTouched());
+                    }
+                    if (Math.random()*100 < touchableObject2.getDangerlevel()){
+                        hurt(touchableObject2);
+                    }
+                } else {
+                    if (sleepStatus == SleepStatus.SLEEP){
+                        dream.setRealismLevel(dream.getRealismLevel() +  20 + touchableObject.beTouched());
+                    }
                 }
             }
+        } else {
+            StringBuilder classNames = new StringBuilder();
+            List<Landscape> list = touchableObject.checkAvailability();
+            for (Landscape obj : list) {
+                String className = obj.getClass().getSimpleName();
+                classNames.append(className).append(" ");
+            }
+            throw new LocationException("Недопустимое действие: герой в локации " + place.getClass().getSimpleName() +
+                    ", предмет в локации " + classNames.toString());
         }
     }
     public void think (String thought){
