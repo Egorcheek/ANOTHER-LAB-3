@@ -31,7 +31,7 @@ class Trauma{
    getDescription()
 }
 
-class storyline.Helper{
+class Helper{
 possibility
 }
 
@@ -76,9 +76,14 @@ sleep(Dream)
 hurt()
 wakeup()
 }
+interface Narrator{
+sayText()
+}
 
-class storyline.Narrator{
-storyline()
+NarratorHuman <|.. Narrator
+
+class NarratorHuman{
+
 }
 
 
@@ -102,6 +107,8 @@ getTrauma("Царапина")
 
 interface Landscape {
 changeLocation()
+checkAvailablePath()
+setNeighbors(List<Landscape>)
 }
 
 enum SleepStatus {
@@ -119,26 +126,7 @@ class Dirt {
 Temperature
 }
 
-class Garage {
-checkAvailablePath()
-setNeighbors(List<Landscape>)
-}
-class Lawn {
-checkAvailablePath()
-setNeighbors(List<Landscape>)
-}
-class Road {
-checkAvailablePath()
-setNeighbors(List<Landscape>)
-}
-class Forest {
-checkAvailablePath()
-setNeighbors(List<Landscape>)
-}
-class Hill {
-checkAvailablePath()
-setNeighbors(List<Landscape>)
-}
+
 
 
 @enduml
